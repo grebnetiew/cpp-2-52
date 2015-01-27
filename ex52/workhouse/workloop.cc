@@ -1,12 +1,12 @@
 #include "workhouse.ih"
 
-void workLoop(Workhouse &wh)
+void Workhouse::workLoop()
 {
-    unique_lock<mutex> ul(wh.d_mutex);
-    while (wh.awaitWork(ul))
+    unique_lock<mutex> ul(d_mutex);
+    while (awaitWork(ul))
     {
-        Workhouse::Task task = move(wh.d_work.front());
-        wh.d_work.pop_front();
+        Workhouse::Task task = move(d_work.front());
+        d_work.pop_front();
         ul.unlock();
 
         task();

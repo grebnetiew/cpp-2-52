@@ -9,8 +9,6 @@
 
 class Workhouse
 {
-    friend void workLoop(Workhouse &wh);
-
     public:
         typedef std::packaged_task<off_t()> Task;
 
@@ -27,6 +25,7 @@ class Workhouse
         void assign(Task &&t);
 
     private:
+        void workLoop();
         bool awaitWork(std::unique_lock<std::mutex> &ul);
 };
 
