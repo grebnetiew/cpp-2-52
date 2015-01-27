@@ -30,6 +30,4 @@ class Workhouse
         bool awaitWork(std::unique_lock<std::mutex> &ul);
 };
 
-void workLoop(Workhouse &wh);
-
 #endif
